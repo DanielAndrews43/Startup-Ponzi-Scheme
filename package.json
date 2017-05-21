@@ -1,0 +1,21 @@
+{
+  "name": "sps",
+  "version": "1.0.0",
+  "description": "Startup Ponzi Scheme, where you submit your two ideas, and get one back",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Daniel Andrews",
+  "license": "ISC",
+  "engines": {
+    "node": "5.9.1"
+  },
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "fs": "0.0.1-security",
+    "mysql": "^2.13.0",
+    "path": "^0.12.7"
+  }
+}
