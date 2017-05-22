@@ -87,7 +87,7 @@ const get_idea = function() {
 module.exports = {
     handler: function input_to_output(ideas) {
         //add the two ideas to the databse
-        console.log('Ideas sent to backend: ' + idea);
+        console.log('Ideas sent to backend: ' + ideas);
         if (ideas.one != null) {
             const one = ideas.one;
             console.log('Idea #1: ' + one);
