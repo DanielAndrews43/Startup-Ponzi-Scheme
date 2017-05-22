@@ -71,6 +71,10 @@ const get_idea = function() {
     const get_query = 'SELECT `idea` FROM `ideas` WHERE `index` = ?';
 
     let res = ''
+    connection.query('SELECT * FROM `ideas`', function(err,rows,fields){
+        if (err) console.log('MYSQL select * from ideas fail');
+        console.log(rows);
+    });
     console.log('Index is: ' + index);
     connection.query(get_query, index, function(err, rows, fields) {
         if (err) console.log('MYSQL select idea fail');
