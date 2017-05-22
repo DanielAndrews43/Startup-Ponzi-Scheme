@@ -30,12 +30,12 @@ const get_index = function() {
     connection.query('CREATE TABLE IF NOT EXISTS `index` (`n` int DEFAULT 1);', function(err, rows, fields) {
         if (err) console.log('MYSQL create index table fail: ' + err);
         else console.log('Succesfully created index table!');
-    });
 
-    //Get the value of current index
-    connection.query('SELECT `n` FROM `index`', function(err, rows, fields) {
-        if (err) console.log('MYSQL select index fail: ' + err);
-        index = rows[0].n;
+        //Get the value of current index
+        connection.query('SELECT `n` FROM `index`', function(err, rows, fields) {
+            if (err) console.log('MYSQL select index fail: ' + err);
+            index = rows[0].n;
+        });
     });
 
     connection.end();
@@ -81,6 +81,8 @@ const get_idea = function() {
         increment_index();
         res = rows[0].idea;
     });
+
+    //THIS NEEDS TO ONLY BE CALLED AFTER THE ABOVE CODE IS DONE EXCECUTING
     return res;
 }
 
