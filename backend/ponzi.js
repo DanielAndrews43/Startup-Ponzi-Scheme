@@ -15,7 +15,7 @@ const increment_index = function(index) {
 
     //Increment index by 1
     connection.query('UPDATE `index` SET `n` = `n` + 1;', function(err, rows, fields) {
-        if (err) console.log('MYSQL update index value fail');
+        if (err) console.log('MYSQL update index value fail: ' + err);
     });
 
     connection.end();
@@ -28,12 +28,13 @@ const get_index = function() {
 
     //Create new table if none
     connection.query('CREATE TABLE IF NOT EXISTS `index` (`n` int DEFAULT 1);', function(err, rows, fields) {
-        if (err) console.log('MYSQL create index table fail');
+        if (err) console.log('MYSQL create index table fail: ' + err);
+        else console.log('Succesfully created index table!');
     });
 
     //Get the value of current index
     connection.query('SELECT `n` FROM `index`', function(err, rows, fields) {
-        if (err) console.log('MYSQL select index fail');
+        if (err) console.log('MYSQL select index fail: ' + err);
         index = rows[0].n;
     });
 
@@ -52,11 +53,12 @@ const store_idea = function(idea) {
     const connection = make_mysql_connection();
     const create_query = 'CREATE TABLE IF NOT EXISTS `ideas` (`index` int NOT NULL AUTO_INCREMENT, `idea` text);';
     connection.query(create_query, function(err, rows, fields) {
-        if (err) console.log('MYSQL create ideas table fail');
+        if (err) console.log('MYSQL create ideas table fail: ' + err);
+        else console.log('Succesfully created ideas table!');
 
         const new_idea = {idea: idea};
         connection.query('INSERT INTO `ideas` SET ?', new_idea, function(err, result) {
-            if (err) console.log('MYSQL insert idea fail');
+            if (err) console.log('MYSQL insert idea fail: ' + err);
         });
     });
     connection.end();
@@ -71,13 +73,8 @@ const get_idea = function() {
     const get_query = 'SELECT `idea` FROM `ideas` WHERE `index` = ?';
 
     let res = ''
-    connection.query('SELECT * FROM `ideas`', function(err,rows,fields){
-        if (err) console.log('MYSQL select * from ideas fail');
-        console.log(rows);
-    });
-    console.log('Index is: ' + index);
     connection.query(get_query, index, function(err, rows, fields) {
-        if (err) console.log('MYSQL select idea fail');
+        if (err) console.log('MYSQL select idea fail: ' + err);
 
         //increment index
         increment_index();
@@ -91,9 +88,7 @@ module.exports = {
         //add the two ideas to the databse
         const one = ideas.one;
         const two = ideas.two;
-
-        store_idea(one);
-        store_idea(two);
+        store_idea()
 
         return get_idea();
     }
