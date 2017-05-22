@@ -46,6 +46,7 @@ const get_index = function() {
 const store_idea = function(idea) {
     //save idea to DB
     //Max length should be 1000 characters
+    console.log('Idea being stored: ' + idea);
     if (idea.length > 1000) {
         idea = idea.substring(0,1000);
     }
@@ -86,9 +87,17 @@ const get_idea = function() {
 module.exports = {
     handler: function input_to_output(ideas) {
         //add the two ideas to the databse
-        const one = ideas.one;
-        const two = ideas.two;
-        store_idea()
+        console.log('Ideas sent to backend: ' + idea);
+        if ideas.one != null {
+            const one = ideas.one;
+            console.log('Idea #1: ' + one);
+            store_idea(ideas.one);
+        }
+        if ideas.two != null {
+            const two = ideas.two;
+            console.log('Idea #2: ' + two);
+            store_idea(ideas.two);
+        }
 
         return get_idea();
     }
