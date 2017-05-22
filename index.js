@@ -10,7 +10,8 @@ app.use(bodyParser.json());
 
 app.set('port', (process.env.PORT || 5000));
 
-app.use('/public', express.static(path.join(__dirname + '/public')));
+app.use('/static', express.static(path.join(__dirname + '/public')));
+app.use('/backend', express.static(path.join(__dirname + '/backend')));
 
 //Home Page Route
 router.get('/', function(req, res, next){
@@ -27,7 +28,7 @@ app.set('view engine', 'html');
 router.post('/ponzi', function(req, res) {
     const response = ponzi.handler(req.body);
     res.send(response);
-    console.log('response sent')
+    console.log('response sent: ' + response);
 });
 
 //If no other express route captures path, return a 404 page
