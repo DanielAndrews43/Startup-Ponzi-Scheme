@@ -88,12 +88,12 @@ module.exports = {
     handler: function input_to_output(ideas) {
         //add the two ideas to the databse
         console.log('Ideas sent to backend: ' + idea);
-        if ideas.one != null {
+        if (ideas.one != null) {
             const one = ideas.one;
             console.log('Idea #1: ' + one);
             store_idea(ideas.one);
         }
-        if ideas.two != null {
+        if (ideas.two != null) {
             const two = ideas.two;
             console.log('Idea #2: ' + two);
             store_idea(ideas.two);
