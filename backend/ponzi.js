@@ -35,12 +35,12 @@ const get_index = function() {
         connection.query('SELECT `n` FROM `index`', function(err, rows, fields) {
             if (err) console.log('MYSQL select index fail: ' + err);
             index = rows[0].n;
+            
+            connection.end();
+
+            return index
         });
     });
-
-    connection.end();
-
-    return index
 }
 
 const store_idea = function(idea) {
@@ -73,17 +73,14 @@ const get_idea = function() {
     const connection = make_mysql_connection();
     const get_query = 'SELECT `idea` FROM `ideas` WHERE `index` = ?';
 
-    let res = ''
-    connection.query(get_query, index, function(err, rows, fields) {
+    return connection.query(get_query, index, function(err, rows, fields) {
         if (err) console.log('MYSQL select idea fail: ' + err);
 
         //increment index
         increment_index();
-        res = rows[0].idea;
+        connection.end();
+        return rows[0].idea;
     });
-
-    //THIS NEEDS TO ONLY BE CALLED AFTER THE ABOVE CODE IS DONE EXCECUTING
-    return res;
 }
 
 module.exports = {
