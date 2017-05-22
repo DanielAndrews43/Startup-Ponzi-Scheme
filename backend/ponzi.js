@@ -64,13 +64,14 @@ const store_idea = function(idea) {
 
 const get_idea = function() {
     //get idea at index from DB
-    var index = get_index();
+    let index = get_index();
 
     //get idea
     const connection = make_mysql_connection();
-    const get_query = 'SELECT `text` FROM `ideas` WHERE `index` = ?';
+    const get_query = 'SELECT `idea` FROM `ideas` WHERE `index` = ?';
 
-    var res = ''
+    let res = ''
+    console.log('Index is: ' + index);
     connection.query(get_query, index, function(err, rows, fields) {
         if (err) console.log('MYSQL select idea fail');
 
@@ -84,8 +85,8 @@ const get_idea = function() {
 module.exports = {
     handler: function input_to_output(ideas) {
         //add the two ideas to the databse
-        let one = ideas.one;
-        let two = ideas.two;
+        const one = ideas.one;
+        const two = ideas.two;
 
         store_idea(one);
         store_idea(two);
