@@ -25,7 +25,7 @@ ol, ul {
 
 /* Title */
 body {
-    background-color: #FF9600;
+    background-color: lightgray;
 }
 
 h1 {
@@ -63,7 +63,7 @@ input[type=text] {
 input[type=submit] {
     width: 50%;
     color: white;
-    background-color: #CCC;
+    background-color: lightblue;
     padding: 14px 20px;
     margin: 8px 0;
     border: none;
@@ -72,7 +72,7 @@ input[type=submit] {
 }
 
 input[type=submit]:hover {
-    background-color: #999;
+    background-color: teal;
 }
 /*End Idea Submission*/
 
@@ -83,5 +83,6 @@ p {
     size: 20px;
     margin: 0 auto;
     text-align: center;
+    font-family: sans-serif;
 }
 /*End Response*/
