@@ -23,6 +23,7 @@ const increment_index = function(index) {
 const get_index = function(callback) {
 
     const connection = make_mysql_connection();
+    var index = 1;
 
     connection.query('CREATE TABLE IF NOT EXISTS `index` (`n` int DEFAULT 1);', function(err, rows, fields) {
         if (err) {
@@ -34,7 +35,9 @@ const get_index = function(callback) {
         connection.query('SELECT `n` FROM `index`', function(err, rows, fields) {
             if (err) {
                 console.log('MYSQL select index fail: ' + err);
-                callback(err);
+            } else if (!rows[0].n) {
+                console.log('MYSQL no index in the table');
+                callback(index);
             } else {
                 callback(null, rows[0].n)
             }
