@@ -9,8 +9,6 @@ $(function (){
 
         e.preventDefault();
 
-        console.log('About to make ajax call!');
-
         $('#input').fadeOut();
         $('#response').show();
 
