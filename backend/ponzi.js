@@ -31,7 +31,7 @@ const get_index = function(callback) {
             callback(err);
             return
         }
-        connection.query('INSERT INTO `index` 1', new_idea, function(err, result) {
+        connection.query('INSERT INTO `index` 1', function(err, result) {
             if (!err) {
                 console.log('inserted value');
             }
