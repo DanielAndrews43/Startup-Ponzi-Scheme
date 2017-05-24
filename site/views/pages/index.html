@@ -4,11 +4,15 @@
         <link rel="stylesheet" href="/static/assets/css/main.css" />
     </head>
     <body>
+        <!--START Head of the page-->
         <h1>Startup Idea Ponzi Scheme</h1>
         <br/>
         <h3>Submit two ideas, get one back</h3>
         <br/>
-        <form>
+        <!--END Head of the page-->
+
+        <!--START Form submission-->
+        <form id="input">
             Idea #1:
             <br/>
             <input id="one" type="text" name="one" placeholder="Your Brilliant First Idea">
@@ -21,6 +25,12 @@
             <br/>
             <input type="submit" value="Submit">
         </form>
+        <!--END Form submission-->
+
+        <!--START Response-->
+        <p id="response" style="visibility: hidden">
+        </p>
+        <!--END Response-->
 
         <script src="static/assets/js/jquery.min.js"></script>
         <script src="static/assets/js/ponzi.js"></script>

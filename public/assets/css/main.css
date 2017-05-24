@@ -25,7 +25,7 @@ ol, ul {
 
 /* Title */
 body {
-    background-color: orange;
+    background-color: #FF9600;
 }
 
 h1 {
@@ -74,3 +74,12 @@ input[type=submit] {
 input[type=submit]:hover {
     background-color: #999;
 }
+/*End Idea Submission*/
+
+/*Response*/
+p {
+    width: 50%;
+    font-size: 20px;
+    size: 20px;
+}
+/*End Response*/

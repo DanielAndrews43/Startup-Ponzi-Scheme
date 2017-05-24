@@ -33,8 +33,6 @@ const get_index = function(callback) {
         }
 
         connection.query('SELECT `n` FROM `index`', function(err, rows, fields) {
-            console.log('rows:',JSON.stringify(rows));
-            console.log('fields:',JSON.stringify(fields));
             if (err) {
                 console.log('MYSQL select index fail: ' + err);
             } else if (!rows[0]) {
