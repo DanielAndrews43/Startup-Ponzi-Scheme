@@ -37,7 +37,7 @@ const get_index = function(callback) {
                 console.log('MYSQL select index fail: ' + err);
             } else if (!rows[0]) {
                 console.log('MYSQL no index in the table');
-                callback(index);
+                callback(null, index);
             } else {
                 callback(null, rows[0].n)
             }
@@ -47,11 +47,19 @@ const get_index = function(callback) {
     });
 }
 
+let submitted = new Set();
 const store_idea = function(idea) {
     //Max length should be 1000 characters
     console.log('Idea being stored: ' + idea);
     if (idea.length > 1000) {
         idea = idea.substring(0,1000);
+    }
+
+    //keep out double clicking or auto-fill
+    if (submitted.has(idea)) {
+        return;
+    } else {
+        submitted.add(idea);
     }
 
     const connection = make_mysql_connection();
@@ -95,10 +103,10 @@ module.exports = {
     handler: function input_to_output(ideas, callback) {
         //add the two ideas to the databse
         if (ideas.one != null) {
-            const one = ideas.one;
+            store_idea(one);
         }
         if (ideas.two != null) {
-            const two = ideas.two;
+            store_idea(two);
         }
 
         get_idea(function(err, data) {
