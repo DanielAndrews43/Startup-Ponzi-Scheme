@@ -35,7 +35,7 @@ const get_index = function(callback) {
         connection.query('SELECT `n` FROM `index`', function(err, rows, fields) {
             if (err) {
                 console.log('MYSQL select index fail: ' + err);
-            } else if (!rows[0].n) {
+            } else if (!rows[0]) {
                 console.log('MYSQL no index in the table');
                 callback(index);
             } else {
