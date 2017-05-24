@@ -25,11 +25,17 @@ const get_index = function(callback) {
     var index = 1;
 
     connection.query('CREATE TABLE IF NOT EXISTS `index` (`n` int DEFAULT 1);', function(err, rows, fields) {
+
         if (err) {
             console.log('MYSQL create index table fail: ' + err);
             callback(err);
             return
         }
+        connection.query('INSERT INTO `index` 1', new_idea, function(err, result) {
+            if (!err) {
+                console.log('inserted value');
+            }
+        });
 
         connection.query('SELECT `n` FROM `index`', function(err, rows, fields) {
             console.log('rows:',JSON.stringify(rows));
