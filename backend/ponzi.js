@@ -29,13 +29,8 @@ const get_index = function(callback) {
         if (err) {
             console.log('MYSQL create index table fail: ' + err);
             callback(err);
-            return
+            return;
         }
-        connection.query('INSERT INTO `index` 1', function(err, result) {
-            if (!err) {
-                console.log('inserted value');
-            }
-        });
 
         connection.query('SELECT `n` FROM `index`', function(err, rows, fields) {
             console.log('rows:',JSON.stringify(rows));
