@@ -103,10 +103,10 @@ module.exports = {
     handler: function input_to_output(ideas, callback) {
         //add the two ideas to the databse
         if (ideas.one != null) {
-            store_idea(one);
+            store_idea(ideas.one);
         }
         if (ideas.two != null) {
-            store_idea(two);
+            store_idea(ideas.two);
         }
 
         get_idea(function(err, data) {
