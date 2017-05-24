@@ -51,7 +51,6 @@ const store_idea = function(idea) {
     const params_query = '(`index` int primary key NOT NULL AUTO_INCREMENT, `idea` text);';
     connection.query(create_query + params_query, function(err, rows, fields) {
         if (err) console.log('MYSQL create ideas table fail: ' + err);
-        else console.log('Succesfully created ideas table!');
 
         const new_idea = {idea: idea};
         connection.query('INSERT INTO `ideas` SET ?', new_idea, function(err, result) {
@@ -65,9 +64,9 @@ const get_idea = function(callback) {
     let index = get_index();
 
     const connection = make_mysql_connection();
-    const get_query = 'SELECT * FROM `ideas` WHERE `index` LIKE ?';
+    const get_query = 'SELECT * FROM `ideas` WHERE `index` =' + mysql.escape(index);
 
-    connection.query(get_query, index, function(err, rows, fields) {
+    connection.query(get_query, function(err, rows, fields) {
         if (err) {
             console.log('MYSQL select idea fail: ' + err);
             callback(err);
