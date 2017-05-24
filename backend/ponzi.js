@@ -21,7 +21,6 @@ const increment_index = function(index) {
 }
 
 const get_index = function() {
-    let index = 1;
 
     const connection = make_mysql_connection();
 
@@ -48,8 +47,9 @@ const store_idea = function(idea) {
     }
 
     const connection = make_mysql_connection();
-    const create_query = 'CREATE TABLE IF NOT EXISTS `ideas` (`index` int NOT NULL AUTO_INCREMENT, `idea` text);';
-    connection.query(create_query, function(err, rows, fields) {
+    const create_query = 'CREATE TABLE IF NOT EXISTS `ideas` '
+    const params_query = '(`index` int primary key NOT NULL AUTO_INCREMENT, `idea` text);';
+    connection.query(create_query + params_query, function(err, rows, fields) {
         if (err) console.log('MYSQL create ideas table fail: ' + err);
         else console.log('Succesfully created ideas table!');
 
@@ -65,7 +65,7 @@ const get_idea = function(callback) {
     let index = get_index();
 
     const connection = make_mysql_connection();
-    const get_query = 'SELECT `idea` FROM `ideas` WHERE `index` LIKE ?';
+    const get_query = 'SELECT * FROM `ideas` WHERE `index` LIKE ?';
 
     connection.query(get_query, index, function(err, rows, fields) {
         if (err) {
@@ -84,13 +84,9 @@ module.exports = {
         //add the two ideas to the databse
         if (ideas.one != null) {
             const one = ideas.one;
-            console.log('Idea #1: ' + one);
-            store_idea(ideas.one);
         }
         if (ideas.two != null) {
             const two = ideas.two;
-            console.log('Idea #2: ' + two);
-            store_idea(ideas.two);
         }
 
         get_idea(function(err, data) {
