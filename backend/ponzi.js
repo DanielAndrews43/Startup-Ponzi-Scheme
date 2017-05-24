@@ -15,9 +15,8 @@ const increment_index = function(index) {
 
     connection.query('UPDATE `index` SET `n` = `n` + 1;', function(err, rows, fields) {
         if (err) console.log('MYSQL update index value fail: ' + err);
+        connection.end();
     });
-
-    connection.end();
 }
 
 const get_index = function(callback) {
@@ -72,9 +71,9 @@ const store_idea = function(idea) {
         const new_idea = {idea: idea};
         connection.query('INSERT INTO `ideas` SET ?', new_idea, function(err, result) {
             if (err) console.log('MYSQL insert idea fail: ' + err);
+            connection.end();
         });
     });
-    connection.end();
 }
 
 const get_idea = function(callback) {
