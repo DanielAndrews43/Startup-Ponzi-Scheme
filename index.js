@@ -26,9 +26,10 @@ app.set('view engine', 'html');
 
 //Route for handling Ponzi Schemeing
 router.post('/ponzi', function(req, res) {
-    const response = ponzi.handler(req.body);
-    res.send(response);
-    console.log('response sent: ' + response);
+    ponzi.handler(req.body, function(err,data) {
+        res.send(data);
+        console.log('response sent: ' + data);
+    });
 });
 
 //If no other express route captures path, return a 404 page
