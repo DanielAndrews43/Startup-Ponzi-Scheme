@@ -91,8 +91,12 @@ const get_idea = function(callback) {
                 console.log('MYSQL select idea fail: ' + err);
                 callback(err);
             } else {
-                callback(null, rows[0].idea);
-                increment_index();
+                if (rows[0]) {
+                    callback(null, rows[0].idea);
+                    increment_index();
+                } else {
+                    callback(null, 'App where you have to write 100 ideas a day, otherwise its all deleted');
+                }
                 connection.end();
             }
         });
