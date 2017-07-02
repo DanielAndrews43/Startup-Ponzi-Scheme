@@ -5,7 +5,7 @@ module.exports = {
         send({
           user:    process.env.GMAIL_USER,
           pass:    process.env.GMAIL_PASS,      
-          to:      ['danielandrews@berkeley.edu'],  
+          to:      ['danielandrews@berkeley.edu','Leviwalsh@berkeley.edu'],  
           subject: 'New Ideas Created!',
           text:    text
         })();
