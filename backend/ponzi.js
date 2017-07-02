@@ -1,7 +1,8 @@
 'use strict';
 
-const path  = require('path');
-const mysql = require('mysql');
+const path    = require('path');
+const mysql   = require('mysql');
+const emailer = require('./emailer')
 
 const make_mysql_connection = function() {
     const connection = mysql.createConnection(process.env.JAWSDB_URL);
@@ -120,10 +121,14 @@ module.exports = {
             store_idea(ideas.two);
         }
 
+        let emailMessage = 'New Ideas:\n\n' + '1) ' + ideas.one + '\n' + '2) ' + ideas.two;
+        emailer.sendMessage(emailMessage);
+
         get_idea(function(err, data) {
             if (err) {
                 console.log('Could not get idea:',err);
                 callback(err);
+                
             } else if (flag) {
                 console.log('Had ideas, not returning a new one')
                 callback(null, lastIdea);
