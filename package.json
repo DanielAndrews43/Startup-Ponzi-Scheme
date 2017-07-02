@@ -9,7 +9,7 @@
   "author": "Daniel Andrews",
   "license": "ISC",
   "engines": {
-    "node": "5.9.1"
+    "node": "7.10.0"
   },
   "dependencies": {
     "body-parser": "^1.17.2",
