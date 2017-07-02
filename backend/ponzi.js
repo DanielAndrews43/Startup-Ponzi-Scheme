@@ -48,6 +48,7 @@ const get_index = function(callback) {
 }
 
 let submitted = new Set();
+let lastIdea = 'App where you have to write 100 ideas a day, otherwise its all deleted';
 const store_idea = function(idea) {
     //Max length should be 1000 characters
     console.log('Idea being stored: ' + idea);
@@ -95,7 +96,7 @@ const get_idea = function(callback) {
                     callback(null, rows[0].idea);
                     increment_index();
                 } else {
-                    callback(null, 'App where you have to write 100 ideas a day, otherwise its all deleted');
+                    callback(null, lastIdea);
                 }
                 connection.end();
             }
@@ -105,6 +106,12 @@ const get_idea = function(callback) {
 
 module.exports = {
     handler: function input_to_output(ideas, callback) {
+        //Check if these ideas have already been submitted
+        let flag = false;
+        if (submitted.has(ideas.one) || submitted.has(ideas.two)) {
+            flag = true;
+        }
+
         //add the two ideas to the databse
         if (ideas.one != null) {
             store_idea(ideas.one);
@@ -117,8 +124,10 @@ module.exports = {
             if (err) {
                 console.log('Could not get idea:',err);
                 callback(err);
-            }
-            else {
+            } else if (flag) {
+                console.log('Had ideas, not returning a new one')
+                callback(null, lastIdea);
+            } else {
                 callback(null, data);
             }
         });
