@@ -84,7 +84,7 @@ const get_idea = function(callback) {
             return
         }
         const connection = make_mysql_connection();
-        const get_query = 'SELECT `idea` FROM `ideas` WHERE `index` =' + mysql.escape(index);
+        const get_query = 'SELECT `idea` FROM `ideas` WHERE `index` =' + index;
 
         connection.query(get_query, function(err, rows, fields) {
             if (err) {

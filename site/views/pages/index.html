@@ -2,34 +2,41 @@
     <head>
         <title>Startup Idea Ponzi Scheme</title>
         <link rel="stylesheet" href="/static/assets/css/main.css" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
     </head>
     <body>
-        <!--START Head of the page-->
-        <h1>Startup Idea Ponzi Scheme</h1>
-        <br/>
-        <h3>Submit two ideas, get one back</h3>
-        <br/>
-        <!--END Head of the page-->
 
-        <!--START Form submission-->
-        <form id="input">
-            Idea #1:
-            <br/>
-            <input id="one" type="text" name="one" placeholder="Your Brilliant First Idea">
-            <br/>
-            <br/>
-            Idea #2:
-            <br/>
-            <input id="two" type="text" name="two" placeholder="Your Brilliant Second Idea">
-            <br/>
-            <br/>
-            <input type="submit" value="Submit">
-        </form>
-        <!--END Form submission-->
+        <div class="wrapper">
 
-        <!--START Response-->
-        <p id="response"></p>
-        <!--END Response-->
+            <div class="content">
+                <!--START Head of the page-->
+                <h1>Startup Idea Ponzi Scheme</h1>
+                <br/>
+                <h3>Submit two ideas, get one back</h3>
+                <br/>
+                <!--END Head of the page-->
+
+                <!--START Form submission-->
+                <form id="input">
+                    Idea #1:
+                    <br/>
+                    <input id="one" type="text" name="one" placeholder="Your Brilliant First Idea">
+                    <br/>
+                    <br/>
+                    Idea #2:
+                    <br/>
+                    <input id="two" type="text" name="two" placeholder="Your Brilliant Second Idea">
+                    <br/>
+                    <br/>
+                    <input type="submit" value="Submit">
+                </form>
+                <!--END Form submission-->
+
+                <!--START Response-->
+                <p id="response"></p>
+                <!--END Response-->
+            </div>
+        </div>
 
         <script src="static/assets/js/jquery.min.js"></script>
         <script src="static/assets/js/ponzi.js"></script>

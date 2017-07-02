@@ -20,18 +20,21 @@ body {
 
 ol, ul {
     list-style: none;
-}
+} 
 /* End Reset */
 
 /* Title */
 body {
     background-color: lightgray;
+    background-image: url("../img/background.png");
+    background-repeat: repeat;
+    background-size: 25%;
 }
 
 h1 {
     margin-top: 25px;
     text-align: center;
-    font-size: 50px;
+    font-size: 200%;
     font-weight: bold;
     font-family: sans-serif;
 }
@@ -43,10 +46,32 @@ h3 {
 }
 /* End Title */
 
+/* Content Wrapper */
+.wrapper {
+    width:100%;
+    height:100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    resize: both;
+    overflow: auto;
+}
+.content {
+    padding: 20px;
+    background: #DFDFDF;
+    color: #555;
+    width: 100%;
+    height: 100%;
+    resize: both;
+    overflow: auto;
+}
+/* End Content Wrapper */
+
 /* Idea Submission */
 form {
     text-align: center;
-    font-size: 18px;
+    font-size: 125%;
     font-family: sans-serif;
 }
 
@@ -54,14 +79,16 @@ input[type=text] {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
-    width: 50%;
+    width: 90%;
     height: 50px;
     padding: 12px 20px;
     margin-top: 3px;
+    font-size: 100%;
 }
 
 input[type=submit] {
-    width: 50%;
+    width: 90%;
+    height: 15%;
     color: white;
     background-color: lightblue;
     padding: 14px 20px;
@@ -73,6 +100,15 @@ input[type=submit] {
 
 input[type=submit]:hover {
     background-color: teal;
+}
+@media (min-width: 480px) {
+    .content {
+        width: 50%;
+        height: 70%;
+    }
+    input[type=text] {
+        height: 15%;
+    }
 }
 /*End Idea Submission*/
 
