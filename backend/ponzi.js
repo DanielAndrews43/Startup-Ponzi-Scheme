@@ -121,17 +121,24 @@ module.exports = {
             store_idea(ideas.two);
         }
 
+        if (ideas.one.length < 10 || ideas.one.split(' ') <= 2 ideas.two.length < 10 || ideas.two.split(' ') <= 2) {
+          flag = true;
+          callback(null, 'Please enter REAL ideas!');
+        }
+
         let emailMessage = 'New Ideas:\n\n' + '1) ' + ideas.one + '\n' + '2) ' + ideas.two;
         emailer.sendMessage(emailMessage);
 
-        get_idea(function(err, data) {
+        if (flag) {
+          console.log('Had ideas, not returning a new one')
+          callback(null, lastIdea);
+          return;
+        }
+
+        return get_idea(function(err, data) {
             if (err) {
                 console.log('Could not get idea:',err);
                 callback(err);
-                
-            } else if (flag) {
-                console.log('Had ideas, not returning a new one')
-                callback(null, lastIdea);
             } else {
                 callback(null, data);
             }
