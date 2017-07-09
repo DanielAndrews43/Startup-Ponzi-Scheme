@@ -113,17 +113,18 @@ module.exports = {
             flag = true;
         }
 
+        if (ideas.one.length < 10 || ideas.one.split(' ').length <= 2 || ideas.two.length < 10 || ideas.two.split(' ').length <= 2) {
+          flag = true;
+          callback(null, 'Please enter REAL ideas!');
+          return;
+        }
+
         //add the two ideas to the databse
         if (ideas.one != null) {
             store_idea(ideas.one);
         }
         if (ideas.two != null) {
             store_idea(ideas.two);
-        }
-
-        if (ideas.one.length < 10 || ideas.one.split(' ') <= 2 ideas.two.length < 10 || ideas.two.split(' ') <= 2) {
-          flag = true;
-          callback(null, 'Please enter REAL ideas!');
         }
 
         let emailMessage = 'New Ideas:\n\n' + '1) ' + ideas.one + '\n' + '2) ' + ideas.two;
