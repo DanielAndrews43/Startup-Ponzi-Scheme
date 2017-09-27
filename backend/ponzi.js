@@ -115,7 +115,7 @@ module.exports = {
 
         if (ideas.one.length < 10 || ideas.one.split(' ').length <= 2 || ideas.two.length < 10 || ideas.two.split(' ').length <= 2) {
           flag = true;
-          callback(null, 'Please enter REAL ideas!');
+          callback(null, 'Please enter at least 10 characters for each of your ideas! That way we won\'t be spammed.');
           return;
         }
 
